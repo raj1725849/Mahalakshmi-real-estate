@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -17,15 +19,19 @@ const Navbar = () => {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      lenis?.stop();
     } else {
       document.body.style.overflow = "unset";
+      lenis?.start();
     }
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, lenis]);
 
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
+        mobileMenuOpen ? "z-[100001]" : "z-[9999]"
+      } ${
         scrolled ? "bg-navy/95 py-4 backdrop-blur-md" : "bg-transparent py-8"
       }`}
     >
@@ -80,7 +86,8 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-navy z-[9998] flex flex-col items-center justify-center gap-12"
+            className="fixed inset-0 bg-navy z-[100000] flex flex-col items-center justify-center gap-12"
+            data-lenis-prevent
           >
             {["Home", "Projects", "About", "Contact"].map((item) => (
               <a 
