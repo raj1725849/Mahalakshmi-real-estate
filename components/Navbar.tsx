@@ -29,10 +29,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
+      className={`fixed left-0 right-0 transition-all duration-500 ${
         mobileMenuOpen ? "z-[100001]" : "z-[9999]"
       } ${
-        scrolled ? "bg-navy/95 py-4 backdrop-blur-md" : "bg-transparent py-8"
+        scrolled 
+          ? "top-0 bg-navy/95 py-4 backdrop-blur-md" 
+          : "top-[40px] md:top-[36px] bg-transparent py-8"
       }`}
     >
       <div className="max-w-[1800px] mx-auto px-8 md:px-12">

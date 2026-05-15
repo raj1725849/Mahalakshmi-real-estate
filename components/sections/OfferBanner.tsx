@@ -22,7 +22,7 @@ export default function OfferBanner() {
     <motion.div 
       initial={{ y: -50 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-[60] bg-[#D4AF37] text-[#001f3f] py-2 px-4 flex justify-center items-center gap-4 text-sm md:text-base font-semibold shadow-lg"
+      className="sticky top-0 z-[10001] bg-[#D4AF37] text-[#001f3f] py-1.5 md:py-2 px-4 flex flex-col md:flex-row justify-center items-center gap-1 md:gap-4 text-[10px] md:text-sm font-bold shadow-lg text-center"
     >
       <div className="flex items-center gap-2">
         <Timer className="w-4 h-4 animate-pulse" />
